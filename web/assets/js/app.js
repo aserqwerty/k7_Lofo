@@ -70,19 +70,19 @@
      2. DATA NAVIGASI
      ---------------------------------------------------------------------- */
   var NAV = [
-    { id: 'beranda',     label: 'Beranda',  href: 'index.html',       ico: 'home' },
-    { id: 'cari',        label: 'Cari',     href: 'cari.html',        ico: 'search' },
-    { id: 'lapor',       label: 'Lapor',    href: 'lapor-hilang.html', ico: 'plus' },
-    { id: 'notifikasi',  label: 'Notifikasi', href: 'notifikasi.html', ico: 'bell' },
-    { id: 'profil',      label: 'Profil',   href: 'dashboard.html',   ico: 'user' }
+    { id: 'beranda', label: 'Beranda', href: 'index.html', ico: 'home' },
+    { id: 'cari', label: 'Cari Barang', href: 'cari.html', ico: 'search' },
+    { id: 'lapor', label: 'Lapor', href: 'lapor.html', ico: 'plus' },
+    { id: 'laporan-saya', label: 'Laporan Saya', href: 'laporan-saya.html', ico: 'file-text' },
+    { id: 'tentang', label: 'Tentang', href: 'tentang.html', ico: 'info' }
   ];
 
   var page = document.body.getAttribute('data-page') || '';
 
   function isActive(id) {
     if (id === page) return true;
-    if (id === 'lapor' && page.indexOf('lapor') === 0) return true;
-    if (id === 'cari' && (page === 'cari' || page === 'detail')) return true;
+    if (id === 'lapor' && ['lapor-hilang', 'lapor-temuan'].includes(page)) return true;
+    if (id === 'cari' && ['detail', 'klaim'].includes(page)) return true;
     return false;
   }
 
@@ -93,13 +93,7 @@
     var host = document.getElementById('site-header');
     if (!host) return;
 
-    var links = [
-      { id: 'beranda', label: 'Beranda', href: 'index.html' },
-      { id: 'cari', label: 'Cari Barang', href: 'cari.html' },
-      { id: 'lapor', label: 'Lapor', href: 'lapor-hilang.html' },
-      { id: 'notifikasi', label: 'Notifikasi', href: 'notifikasi.html' },
-      { id: 'profil', label: 'Dashboard', href: 'dashboard.html' }
-    ].map(function (l) {
+    var links = NAV.map(function (l) {
       return '<a href="' + l.href + '"' + (isActive(l.id) ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
     }).join('');
 
@@ -108,25 +102,22 @@
         '<div class="topbar__inner">' +
           '<a class="brand" href="index.html" aria-label="LoFo — Beranda">' +
             '<span class="brand__mark">' + icon('package') + '</span>' +
-            '<span class="brand__name">Lo<span>Fo</span></span>' +
+            '<span class="brand__name">LoFo</span>' +
           '</a>' +
           '<nav class="nav-links" aria-label="Navigasi utama">' + links + '</nav>' +
           '<div class="topbar__actions">' +
-            '<a class="icon-btn" href="cari.html" aria-label="Cari barang">' + icon('search') + '</a>' +
-            '<a class="icon-btn" href="notifikasi.html" aria-label="Notifikasi, 3 belum dibaca">' +
-              icon('bell') + '<span class="icon-btn__dot"></span>' +
-            '</a>' +
-            '<a class="btn btn--primary btn--sm" href="lapor-hilang.html" style="display:none" data-desktop-cta>' +
-              icon('plus') + 'Lapor Barang' +
-            '</a>' +
-            '<a class="avatar" href="dashboard.html" aria-label="Akun: Achmad Ghozali" style="width:36px;height:36px;font-size:12.5px">AG</a>' +
+            '<form class="topbar__search" role="search" aria-label="Pencarian cepat" action="cari.html">' +
+              '<label class="sr-only" for="site-q">Cari barang</label>' +
+              '<input class="input" id="site-q" name="q" type="search" placeholder="Cari barang…" maxlength="100">' +
+              '<button class="icon-btn" aria-label="Jalankan pencarian">' + icon('search') + '</button>' +
+            '</form>' +
+            '<a class="icon-btn topbar__notification" href="notifikasi.html" aria-label="Notifikasi">' + icon('bell') + '</a>' +
+            '<a class="btn btn--ghost btn--sm" href="masuk.html">Masuk</a>' +
+            '<a class="btn btn--primary btn--sm" href="daftar.html">Daftar Gratis</a>' +
           '</div>' +
         '</div>' +
       '</header>';
 
-    // CTA hanya tampil di desktop
-    var cta = host.querySelector('[data-desktop-cta]');
-    if (cta && window.matchMedia('(min-width: 1024px)').matches) cta.style.display = 'inline-flex';
   }
 
   /* ----------------------------------------------------------------------
@@ -137,9 +128,6 @@
     if (!host) return;
 
     var items = NAV.map(function (n) {
-      if (n.id === 'lapor') {
-        return '<a class="bottomnav__fab" href="' + n.href + '" aria-label="Lapor barang">' + icon('plus') + '</a>';
-      }
       return '<a href="' + n.href + '"' + (isActive(n.id) ? ' aria-current="page"' : '') + '>' +
         icon(n.ico) + '<span>' + n.label + '</span></a>';
     }).join('');
@@ -164,8 +152,8 @@
           '<nav class="site-foot__links" aria-label="Tautan footer">' +
             '<a href="index.html">Beranda</a>' +
             '<a href="cari.html">Cari Barang</a>' +
-            '<a href="lapor-temuan.html">Lapor Temuan</a>' +
-            '<a href="dashboard.html">Dashboard</a>' +
+            '<a href="lapor.html">Lapor</a>' +
+            '<a href="tentang.html">Tentang</a>' +
           '</nav>' +
         '</div>' +
       '</footer>';
@@ -321,9 +309,7 @@
           return;
         }
 
-        toast(form.getAttribute('data-success') || 'Berhasil disimpan.');
-        form.reset();
-        form.querySelectorAll('.field').forEach(function (f) { f.classList.remove('is-invalid'); });
+        toast('Fitur ini belum aktif. Data belum dikirim atau disimpan.');
       });
 
       form.querySelectorAll('.input, .select, .textarea').forEach(function (input) {

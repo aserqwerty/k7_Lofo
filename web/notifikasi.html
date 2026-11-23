@@ -4,166 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Notifikasi — LoFo</title>
-<meta name="description" content="Pusat notifikasi laporan dan klaim barang di LoFo.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="notifikasi">
-
 <div id="site-header"></div>
-
-<main class="page">
+<main class="page prototype-page">
   <div class="container stack">
-
-    <div class="row-between" style="margin-bottom:8px">
-      <div class="page-head" style="margin:0">
-        <h1>Notifikasi</h1>
-        <p><span class="badge badge--soft" style="margin-top:6px">3 notifikasi baru belum dibaca</span></p>
-      </div>
-      <button class="btn btn--ghost btn--sm" type="button" data-mark-read style="flex:none">
-        <span data-icon="check"></span>Tandai Semua Dibaca
-      </button>
-    </div>
-
-    <!-- Layout 2 Kolom di Desktop -->
-    <div class="notif-layout">
-
-      <!-- Kolom Kiri: Daftar Notifikasi -->
-      <div class="notif-main stack-sm">
-
-        <div class="chips" data-chipgroup="single" role="group" aria-label="Filter notifikasi" style="margin-bottom:8px">
-          <button class="chip" aria-pressed="true" data-value="semua">Semua</button>
-          <button class="chip" aria-pressed="false" data-value="klaim">Klaim</button>
-          <button class="chip" aria-pressed="false" data-value="laporan">Laporan</button>
-          <button class="chip" aria-pressed="false" data-value="admin">Admin</button>
-        </div>
-
-        <div class="stack-sm">
-
-          <article class="notif notif--unread">
-            <span class="notif__ico notif__ico--ok"><span data-icon="check-circle"></span></span>
-            <div class="grow">
-              <div class="row-between">
-                <div class="notif__title">Klaim Kepemilikan Disetujui!</div>
-                <div class="notif__time">2 menit lalu</div>
-              </div>
-              <div class="notif__msg">Klaimmu untuk <strong>iPhone 13 Pro (Sierra Blue)</strong> telah disetujui admin. Silakan ambil barang di Posko Keamanan Gedung A.</div>
-              <div style="margin-top:8px"><a href="detail.html" class="small strong" style="color:var(--primary-dark)">Lihat Instruksi Pengambilan &rarr;</a></div>
-            </div>
-          </article>
-
-          <article class="notif notif--unread">
-            <span class="notif__ico notif__ico--info"><span data-icon="refresh"></span></span>
-            <div class="grow">
-              <div class="row-between">
-                <div class="notif__title">Kandidat Barang Mirip Ditemukan (AI Match 87%)</div>
-                <div class="notif__time">1 jam lalu</div>
-              </div>
-              <div class="notif__msg">Ada laporan barang temuan baru di Perpustakaan yang cocok dengan laporan Dompet Kulit Coklat milikmu.</div>
-              <div style="margin-top:8px"><a href="cari.html" class="small strong" style="color:var(--primary-dark)">Cek Kesesuaian &rarr;</a></div>
-            </div>
-          </article>
-
-          <article class="notif notif--unread">
-            <span class="notif__ico notif__ico--info"><span data-icon="shield"></span></span>
-            <div class="grow">
-              <div class="row-between">
-                <div class="notif__title">Laporan Barang Berhasil Diverifikasi</div>
-                <div class="notif__time">3 jam lalu</div>
-              </div>
-              <div class="notif__msg">Laporan kehilangan Dompet Kulit Coklat telah ditinjau dan kini tayang di daftar pencarian publik.</div>
-            </div>
-          </article>
-
-          <article class="notif">
-            <span class="notif__ico notif__ico--bad"><span data-icon="x"></span></span>
-            <div class="grow">
-              <div class="row-between">
-                <div class="notif__title">Pengajuan Klaim Ditolak</div>
-                <div class="notif__time">Kemarin · 15.30</div>
-              </div>
-              <div class="notif__msg">Klaim Kunci Motor Honda ditolak: foto nomor plat dan ciri fisik tidak sesuai dengan barang temuan.</div>
-            </div>
-          </article>
-
-          <article class="notif">
-            <span class="notif__ico notif__ico--warn"><span data-icon="mail"></span></span>
-            <div class="grow">
-              <div class="row-between">
-                <div class="notif__title">Pesan dari Admin LoFo</div>
-                <div class="notif__time">Kemarin · 10.15</div>
-              </div>
-              <div class="notif__msg">Mohon lengkapi foto kartu identitas atau bukti nomor seri untuk mempercepat pencocokan laporanmu.</div>
-            </div>
-          </article>
-
-          <article class="notif">
-            <span class="notif__ico notif__ico--ok"><span data-icon="check-circle"></span></span>
-            <div class="grow">
-              <div class="row-between">
-                <div class="notif__title">Serah Terima Selesai</div>
-                <div class="notif__time">05 Okt 2026</div>
-              </div>
-              <div class="notif__msg">Barang temuan Tas Ransel Hitam telah diserahkan kembali kepada pemilik resminya. Terima kasih!</div>
-            </div>
-          </article>
-
-        </div>
-
-      </div>
-
-      <!-- Kolom Kanan: Preferensi Notifikasi (Desktop) -->
-      <aside class="notif-sidebar stack-sm" aria-label="Preferensi Notifikasi">
-        <div class="card card--pad stack-sm">
-          <div class="strong" style="font-size:14px;display:flex;align-items:center;gap:8px">
-            <span data-icon="settings" style="color:var(--primary-dark)"></span>Saluran Pemberitahuan
-          </div>
-          <p class="small muted" style="margin:0">Pilih bagaimana kamu ingin menerima informasi barang:</p>
-
-          <div class="stack-sm" style="margin-top:4px">
-            <label class="checkline" style="font-size:13px">
-              <input type="checkbox" checked>
-              <span>Email (<span class="muted">achmad@lofo.id</span>)</span>
-            </label>
-            <label class="checkline" style="font-size:13px">
-              <input type="checkbox" checked>
-              <span>WhatsApp Pemberitahuan Instan</span>
-            </label>
-            <label class="checkline" style="font-size:13px">
-              <input type="checkbox" checked>
-              <span>Push Notification Browser</span>
-            </label>
-          </div>
-
-          <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:6px">
-            <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Frekuensi Rekap</div>
-            <select class="select" style="font-size:12.5px;padding:8px 10px;height:auto;min-height:36px">
-              <option>Instan (Setiap ada kecocokan)</option>
-              <option>Ringkasan Harian (08.00 WIB)</option>
-              <option>Hanya status klaim mendesak</option>
-            </select>
-          </div>
-
-          <button class="btn btn--primary btn--sm btn--block" type="button" data-toast="Preferensi notifikasi disimpan." style="margin-top:6px">
-            Simpan Preferensi
-          </button>
-        </div>
-
-        <div class="card card--pad stack-sm" style="background:var(--surface-2)">
-          <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em">Privasi Notifikasi</div>
-          <p class="small muted" style="margin:0;line-height:1.5">
-            Kamu dapat menonaktifkan notifikasi pemasaran kapan saja. Notifikasi keamanan dan klaim akan selalu aktif.
-          </p>
-        </div>
-      </aside>
-
-    </div>
-
+    <div class="page-head"><h1>Notifikasi</h1></div>
+    <section class="card card--pad stack-sm">
+      <h2>Notifikasi belum tersedia</h2>
+      <p class="muted">Pembaruan laporan dan klaim akan muncul setelah fitur notifikasi aktif.</p>
+    </section>
   </div>
 </main>
-
 <div id="site-footer"></div>
 <div id="site-bottomnav"></div>
 <script src="assets/js/app.js"></script>

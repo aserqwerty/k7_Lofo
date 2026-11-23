@@ -17,11 +17,11 @@
 <main class="page">
   <div class="container stack">
 
-    <a class="back-link" href="index.html"><span data-icon="arrow-left"></span>Beranda</a>
+    <a class="back-link" href="lapor.html"><span data-icon="arrow-left"></span>Pilih jenis laporan</a>
 
     <div class="page-head">
       <h1>Lapor Barang Temuan</h1>
-      <p>Terima kasih sudah jujur! Bantu barang ini segera kembali ke pemilik aslinya.</p>
+      <p>Pratinjau formulir. Pengiriman laporan belum tersedia.</p>
     </div>
 
     <div class="form-layout">
@@ -34,7 +34,7 @@
           <span class="steps__bar"><span class="steps__fill" style="width:50%"></span></span>
         </div>
 
-        <form class="stack" novalidate data-validate data-success="Laporan barang temuan berhasil dikirim. Menunggu verifikasi admin.">
+        <form class="stack" method="post" novalidate data-validate>
 
           <section class="card card--pad stack-sm">
             <h2 style="font-size:15.5px;margin-bottom:2px">Informasi Barang Temuan</h2>
@@ -50,7 +50,7 @@
                 <label for="kategori">Kategori <span class="req">*</span></label>
                 <select class="select" id="kategori" name="kategori" required>
                   <option value="">Pilih kategori</option>
-                  <option selected>Elektronik</option>
+                  <option>Elektronik</option>
                   <option>Dompet &amp; Tas</option>
                   <option>Kunci</option>
                   <option>Dokumen</option>
@@ -77,7 +77,7 @@
 
               <div class="field">
                 <label for="tanggal">Tanggal Ditemukan <span class="req">*</span></label>
-                <input class="input" type="date" id="tanggal" name="tanggal" value="2026-10-10" required>
+                <input class="input" type="date" id="tanggal" name="tanggal" required>
                 <span class="field__error">Tanggal wajib diisi.</span>
               </div>
             </div>
@@ -94,30 +94,20 @@
               <input type="file" id="f3" class="sr-only" accept="image/*">
             </div>
 
-            <div class="form-row-2">
-              <div class="field">
-                <label for="titip">Titipkan Barang di <span class="muted" style="font-weight:500">(opsional)</span></label>
-                <select class="select" id="titip" name="titip">
-                  <option value="">Masih saya simpan sendiri</option>
-                  <option selected>Pos Keamanan Gedung A</option>
-                  <option>Resepsionis Lobby Utama</option>
-                  <option>Kantor BAAK Kampus</option>
-                </select>
-                <span class="field__hint">Barang titipan di pos resmi lebih cepat diverifikasi.</span>
-              </div>
-
-              <div class="field">
-                <label for="kontak">Kontak Pelapor / Penemu</label>
-                <input class="input" type="tel" id="kontak" value="0812-3456-7890" readonly style="background:var(--surface-2)">
-                <span class="field__hint">Nomor telepon terverifikasi dari akunmu.</span>
-              </div>
+            <div class="field">
+              <label for="titip">Penitipan barang (opsional)</label>
+              <select class="select" id="titip" name="titip">
+                <option value="">Masih saya simpan sendiri</option>
+                <option value="pos-satpam">Dititipkan di pos satpam kampus</option>
+              </select>
+              <span class="field__hint">Satpam menerima titipan fisik. Hanya Admin yang melakukan verifikasi.</span>
             </div>
 
           </section>
 
           <div class="action-bar">
-            <a class="btn btn--ghost" href="index.html">Batal</a>
-            <button class="btn btn--primary" type="submit">Kirim Laporan Temuan<span data-icon="chevron-right"></span></button>
+            <a class="btn btn--ghost" href="lapor.html">Batal</a>
+            <button class="btn btn--primary" type="submit" disabled>Kirim Laporan Temuan<span data-icon="chevron-right"></span></button>
           </div>
 
         </form>
@@ -131,7 +121,7 @@
             <span data-icon="thumbs-up"></span>Apresiasi Kejujuran
           </div>
           <p class="small" style="margin:0;color:#047857;line-height:1.55">
-            Setiap laporan temuan yang terverifikasi menambah <strong>+50 Poin Kebaikan Kampus</strong> pada profilmu. Terima kasih telah menjaga integritas kampus!
+             Menitipkan barang di pos satpam membantu pemilik mengambilnya di tempat yang dikenal warga kampus.
           </p>
         </div>
 
@@ -146,11 +136,7 @@
 
         <div class="card card--pad stack-sm">
           <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em">Posko Penitipan Resmi</div>
-          <ul class="stack-sm" style="margin:0;padding-left:18px;font-size:12.5px;color:var(--ink-2);line-height:1.5">
-            <li>Pos Keamanan Gedung A (24 Jam)</li>
-            <li>Lobby Gedung Rektorat (08:00 - 16:00)</li>
-            <li>Perpustakaan Lt. 1 Layanan Sirkulasi</li>
-          </ul>
+           <p class="small muted">Tanyakan lokasi dan jam layanan pos satpam kepada pihak kampus.</p>
         </div>
       </aside>
 

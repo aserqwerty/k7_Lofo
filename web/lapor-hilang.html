@@ -17,11 +17,11 @@
 <main class="page">
   <div class="container stack">
 
-    <a class="back-link" href="index.html"><span data-icon="arrow-left"></span>Beranda</a>
+    <a class="back-link" href="lapor.html"><span data-icon="arrow-left"></span>Pilih jenis laporan</a>
 
     <div class="page-head">
       <h1>Lapor Barang Hilang</h1>
-      <p>Isi detail barangmu supaya orang lain bisa mengenalinya dan segera melapor saat menemukan.</p>
+      <p>Pratinjau formulir. Pengiriman laporan belum tersedia.</p>
     </div>
 
     <div class="form-layout">
@@ -34,7 +34,7 @@
           <span class="steps__bar"><span class="steps__fill" style="width:50%"></span></span>
         </div>
 
-        <form class="stack" novalidate data-validate data-success="Laporan barang hilang berhasil dikirim. Menunggu verifikasi admin.">
+        <form class="stack" method="post" novalidate data-validate>
 
           <section class="card card--pad stack-sm">
             <h2 style="font-size:15.5px;margin-bottom:2px">Informasi Barang</h2>
@@ -64,7 +64,7 @@
             <div class="field">
               <label for="deskripsi">Deskripsi Lengkap <span class="req">*</span></label>
               <textarea class="textarea" id="deskripsi" name="deskripsi" placeholder="Jelaskan ciri-ciri barang: warna, merek, kondisi, dan tanda khusus lainnya..." required style="min-height:96px"></textarea>
-              <span class="field__hint">Semakin detail, semakin mudah dicocokkan oleh sistem AI kami.</span>
+              <span class="field__hint">Sebutkan ciri umum yang membantu orang lain mengenali barangmu.</span>
               <span class="field__error">Deskripsi wajib diisi.</span>
             </div>
 
@@ -77,7 +77,7 @@
 
               <div class="field">
                 <label for="tanggal">Tanggal Hilang <span class="req">*</span></label>
-                <input class="input" type="date" id="tanggal" name="tanggal" value="2026-10-12" required>
+                <input class="input" type="date" id="tanggal" name="tanggal" required>
                 <span class="field__error">Tanggal wajib diisi.</span>
               </div>
             </div>
@@ -95,8 +95,8 @@
           </section>
 
           <div class="action-bar">
-            <a class="btn btn--ghost" href="index.html">Batal</a>
-            <button class="btn btn--primary" type="submit">Kirim Laporan<span data-icon="chevron-right"></span></button>
+            <a class="btn btn--ghost" href="lapor.html">Batal</a>
+            <button class="btn btn--primary" type="submit" disabled>Kirim Laporan<span data-icon="chevron-right"></span></button>
           </div>
 
         </form>
@@ -111,7 +111,7 @@
           </div>
           <ul class="stack-sm" style="margin:0;padding-left:18px;font-size:13px;color:var(--ink-2);line-height:1.55">
             <li>Sebutkan <strong>merek &amp; warna</strong> secara spesifik.</li>
-            <li>Sertakan <strong>ciri khusus rahasia</strong> (stiker, goresan, gantungan kunci).</li>
+            <li>Simpan <strong>ciri rahasia</strong> untuk bukti kepemilikan.</li>
             <li>Tuliskan estimasi <strong>jam kejadian</strong> jika mengingatnya.</li>
             <li>Gunakan nomor kontak yang aktif dan mudah dihubungi.</li>
           </ul>
@@ -128,7 +128,7 @@
 
         <div class="card card--pad stack-sm">
           <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em">Butuh Bantuan Mendesak?</div>
-          <p class="small" style="margin:0;color:var(--ink-2)">Hubungi Pos Keamanan Kampus Pusat: <strong class="mono">0812-3456-7890</strong></p>
+          <p class="small" style="margin:0;color:var(--ink-2)">Untuk bantuan langsung, hubungi pos satpam kampus melalui kontak resmi kampus.</p>
         </div>
       </aside>
 

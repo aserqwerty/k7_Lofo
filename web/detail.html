@@ -3,149 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>iPhone 13 Pro — Detail Barang — LoFo</title>
-<meta name="description" content="Detail barang temuan iPhone 13 Pro di Kantin Gedung A.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Detail Barang — LoFo</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="detail">
-
 <div id="site-header"></div>
-
-<main class="page">
+<main class="page prototype-page">
   <div class="container stack">
-
-    <a class="back-link" href="cari.html"><span data-icon="arrow-left"></span>Kembali ke hasil pencarian</a>
-
-    <div class="detail-layout">
-
-      <!-- KIRI: foto + info -->
-      <div class="stack">
-
-        <div class="detail-photo">
-          <span data-icon="image"></span>
-          <div class="detail-photo__tag">
-            <span class="badge badge--found"><span class="badge__dot"></span>Temuan</span>
-            <span class="badge badge--muted">Tersedia</span>
-          </div>
-        </div>
-
-        <div>
-          <div class="row" style="gap:10px;flex-wrap:wrap">
-            <span class="badge badge--soft">Elektronik</span>
-            <span class="item__meta"><span data-icon="eye"></span>248 dilihat</span>
-          </div>
-          <h1 style="font-size:clamp(22px,5vw,30px);letter-spacing:-.03em;margin-top:10px">iPhone 13 Pro</h1>
-        </div>
-
-        <section class="card card--pad">
-          <h2 style="font-size:15px;margin-bottom:4px">Deskripsi</h2>
-          <p class="small" style="color:var(--ink-2);line-height:1.65">
-            Ditemukan iPhone 13 Pro warna Graphite di area kantin gedung A sekitar pukul 12.30.
-            Kondisi layar mulus, casing sedikit lecet di sudut kanan bawah.
-          </p>
-        </section>
-
-        <section class="card card--pad">
-          <h2 style="font-size:15px;margin-bottom:6px">Informasi Barang</h2>
-          <div class="meta-list">
-            <div class="meta-row">
-              <span class="meta-row__ico"><span data-icon="map-pin"></span></span>
-              <div>
-                <div class="meta-row__label">Lokasi Ditemukan</div>
-                <div class="meta-row__value">Kantin Gedung A</div>
-              </div>
-            </div>
-            <div class="meta-row">
-              <span class="meta-row__ico"><span data-icon="calendar"></span></span>
-              <div>
-                <div class="meta-row__label">Tanggal</div>
-                <div class="meta-row__value">10 Oktober 2026</div>
-              </div>
-            </div>
-            <div class="meta-row">
-              <span class="meta-row__ico"><span data-icon="tag"></span></span>
-              <div>
-                <div class="meta-row__label">Kategori</div>
-                <div class="meta-row__value">Elektronik</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </div>
-
-      <!-- KANAN: pelapor, klaim, mirip -->
-      <div class="stack">
-
-        <section class="card card--pad">
-          <h2 style="font-size:15px;margin-bottom:12px">Pelapor</h2>
-          <div class="reporter">
-            <span class="avatar">SN</span>
-            <div class="grow">
-              <div class="reporter__name">Siti Nurhaliza</div>
-              <div class="item__meta" style="margin-top:2px">
-                <span class="badge badge--found" style="font-size:10.5px;padding:2px 8px">Terverifikasi</span>
-                12 laporan
-              </div>
-            </div>
-          </div>
-          <div class="row" style="gap:8px;margin-top:14px">
-            <button class="btn btn--ghost btn--sm grow" type="button" data-toast="Membuka percakapan dengan pelapor…">
-              <span data-icon="mail"></span>Hubungi
-            </button>
-            <button class="btn btn--ghost btn--sm grow" type="button" data-toast="Laporan ditandai untuk ditinjau admin.">
-              <span data-icon="flag"></span>Laporkan
-            </button>
-          </div>
-        </section>
-
-        <section class="card card--pad" style="background:var(--primary-tint);border-color:#FED7AA">
-          <div class="row" style="gap:10px;align-items:flex-start">
-            <span class="meta-row__ico" style="background:#fff"><span data-icon="shield"></span></span>
-            <div>
-              <div class="strong" style="font-size:14px">Klaim dengan aman</div>
-              <p class="tiny" style="color:var(--ink-2);margin-top:3px">
-                Siapkan bukti kepemilikan: nota pembelian, IMEI, atau foto barang.
-              </p>
-            </div>
-          </div>
-          <a class="btn btn--primary btn--block" href="klaim.html" style="margin-top:14px">Ajukan Klaim Barang Ini</a>
-        </section>
-
-        <section>
-          <div class="section-head">
-            <h2>Barang Mirip</h2>
-            <span class="badge badge--soft"><span data-icon="refresh" style="width:12px;height:12px"></span>Auto-Matching</span>
-          </div>
-          <div class="stack-sm">
-            <a class="match" href="detail.html">
-              <span class="match__thumb"><span data-icon="laptop"></span></span>
-              <div class="grow">
-                <div class="item__title">iPhone 12</div>
-                <div class="item__meta"><span data-icon="tag"></span>Elektronik</div>
-              </div>
-              <span class="match__pct">78%</span>
-            </a>
-            <a class="match" href="detail.html">
-              <span class="match__thumb"><span data-icon="laptop"></span></span>
-              <div class="grow">
-                <div class="item__title">Ponsel Android</div>
-                <div class="item__meta"><span data-icon="tag"></span>Elektronik</div>
-              </div>
-              <span class="match__pct">64%</span>
-            </a>
-          </div>
-        </section>
-
-      </div>
-    </div>
-
+    <div class="page-head"><h1>Detail Barang</h1></div>
+    <section class="card card--pad stack-sm">
+      <h2>Halaman detail belum tersedia</h2>
+      <p class="muted">Daftar laporan bisa dilihat di Cari Barang.</p>
+      <div><a class="btn btn--primary" href="cari.html">Cari Barang</a></div>
+    </section>
   </div>
 </main>
-
 <div id="site-footer"></div>
 <div id="site-bottomnav"></div>
 <script src="assets/js/app.js"></script>
