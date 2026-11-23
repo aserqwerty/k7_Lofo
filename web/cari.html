@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cari Barang — LoFo</title>
+<meta name="description" content="Cari barang hilang dan temuan di LoFo. Filter berdasarkan kategori, status, dan lokasi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="cari">
+
+<div id="site-header"></div>
+
+<main class="page">
+  <div class="container stack">
+
+    <div class="page-head">
+      <h1>Cari Barang</h1>
+      <p>Temukan barang hilang atau temuan yang cocok denganmu.</p>
+    </div>
+
+    <!-- Pencarian -->
+    <div class="row" style="gap:10px">
+      <div class="field grow">
+        <label class="sr-only" for="q">Kata kunci</label>
+        <div style="position:relative">
+          <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);display:flex" data-icon="search"></span>
+          <input class="input" type="search" id="q" placeholder="Cari dompet, iPhone, kunci…" data-live-search style="padding-left:44px">
+        </div>
+      </div>
+      <button class="btn btn--ghost hide-desktop" type="button" data-toast="Filter dapat dipilih pada opsi di bawah." aria-label="Filter" style="flex:none">
+        <span data-icon="filter"></span><span class="hide-sm">Filter</span>
+      </button>
+    </div>
+
+    <!-- Mobile Quick Chips (disembunyikan di desktop) -->
+    <div class="hide-desktop stack-sm">
+      <div class="chips" data-chipgroup="single" role="group" aria-label="Filter kategori mobile">
+        <button class="chip" aria-pressed="true" data-value="semua">Semua</button>
+        <button class="chip" aria-pressed="false" data-value="elektronik">Elektronik</button>
+        <button class="chip" aria-pressed="false" data-value="dompet">Dompet &amp; Tas</button>
+        <button class="chip" aria-pressed="false" data-value="kunci">Kunci</button>
+        <button class="chip" aria-pressed="false" data-value="dokumen">Dokumen</button>
+      </div>
+      <div class="chips" data-chipgroup="single" role="group" aria-label="Filter status mobile">
+        <button class="chip" aria-pressed="true" data-value="semua">Semua Status</button>
+        <button class="chip" aria-pressed="false" data-value="hilang">Hilang</button>
+        <button class="chip" aria-pressed="false" data-value="temuan">Temuan</button>
+      </div>
+    </div>
+
+    <!-- Search Layout (Desktop Sidebar + Grid Hasil) -->
+    <div class="search-layout">
+
+      <!-- Desktop Filter Sidebar -->
+      <aside class="filters-desktop stack-sm" aria-label="Filter Lengkap">
+        <div class="row-between" style="border-bottom:1px solid var(--border);padding-bottom:10px">
+          <div class="strong" style="font-size:13.5px;display:flex;align-items:center;gap:8px">
+            <span data-icon="filter" style="color:var(--primary-dark)"></span>Filter Pencarian
+          </div>
+          <button class="btn btn--ghost btn--sm" type="button" onclick="document.querySelectorAll('.filters-desktop .chip[data-value=\'semua\']').forEach(function(b){b.click();});" style="padding:3px 8px;font-size:11.5px;height:auto">Reset</button>
+        </div>
+
+        <div>
+          <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Kategori Barang</div>
+          <div class="chips" data-chipgroup="single" style="display:flex;flex-direction:column;align-items:stretch;gap:6px">
+            <button class="chip" aria-pressed="true" data-value="semua" style="justify-content:flex-start">Semua Kategori</button>
+            <button class="chip" aria-pressed="false" data-value="elektronik" style="justify-content:flex-start">Elektronik</button>
+            <button class="chip" aria-pressed="false" data-value="dompet" style="justify-content:flex-start">Dompet &amp; Tas</button>
+            <button class="chip" aria-pressed="false" data-value="kunci" style="justify-content:flex-start">Kunci</button>
+            <button class="chip" aria-pressed="false" data-value="dokumen" style="justify-content:flex-start">Dokumen</button>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:4px">
+          <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Status Barang</div>
+          <div class="chips" data-chipgroup="single" style="display:flex;flex-direction:column;align-items:stretch;gap:6px">
+            <button class="chip" aria-pressed="true" data-value="semua" style="justify-content:flex-start">Semua Status</button>
+            <button class="chip" aria-pressed="false" data-value="hilang" style="justify-content:flex-start">Barang Hilang</button>
+            <button class="chip" aria-pressed="false" data-value="temuan" style="justify-content:flex-start">Barang Temuan</button>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:4px">
+          <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Lokasi Populer</div>
+          <select class="select" style="font-size:12.5px;padding:8px 10px;height:auto;min-height:36px">
+            <option>Semua Lokasi</option>
+            <option>Perpustakaan Kampus</option>
+            <option>Kantin Gedung A</option>
+            <option>Parkiran Motor Blok B</option>
+            <option>Lobby Gedung Utama</option>
+            <option>Gedung B Lantai 3</option>
+          </select>
+        </div>
+      </aside>
+
+      <!-- Main Results Area -->
+      <div class="search-main stack">
+
+        <!-- Toolbar hasil -->
+        <div class="row-between">
+          <span class="small muted strong" data-filter-count>6 barang</span>
+          <div class="row" style="gap:8px">
+            <label class="sr-only" for="sort">Urutkan</label>
+            <select class="select" id="sort" style="height:38px;min-height:38px;padding-block:0;font-size:13px;font-weight:600;width:auto">
+              <option>Terbaru</option>
+              <option>Terlama</option>
+              <option>Paling relevan</option>
+              <option>Jarak terdekat</option>
+            </select>
+            <button class="icon-btn" type="button" data-toast="Tampilan daftar" aria-label="Tampilan daftar"><span data-icon="list"></span></button>
+            <button class="icon-btn" type="button" data-toast="Tampilan grid" aria-label="Tampilan grid"><span data-icon="grid"></span></button>
+          </div>
+        </div>
+
+        <!-- Hasil -->
+        <div class="item-list" data-filter-list>
+
+      <a class="item" href="detail.html" data-tags="dompet dompet &amp; tas hilang">
+        <span class="item__thumb"><span data-icon="wallet"></span></span>
+        <div class="item__body">
+          <div class="item__top">
+            <span class="badge badge--lost"><span class="badge__dot"></span>Hilang</span>
+          </div>
+          <div class="item__title">Dompet Kulit Coklat</div>
+          <div class="item__meta"><span data-icon="tag"></span>Dompet &amp; Tas</div>
+          <div class="item__foot">
+            <div class="item__meta"><span data-icon="map-pin"></span>Perpustakaan Kampus</div>
+            <div class="item__meta"><span data-icon="clock"></span>12 Okt 2026</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="item" href="detail.html" data-tags="elektronik temuan iphone">
+        <span class="item__thumb"><span data-icon="laptop"></span></span>
+        <div class="item__body">
+          <div class="item__top">
+            <span class="badge badge--found"><span class="badge__dot"></span>Temuan</span>
+          </div>
+          <div class="item__title">iPhone 13 Pro</div>
+          <div class="item__meta"><span data-icon="tag"></span>Elektronik</div>
+          <div class="item__foot">
+            <div class="item__meta"><span data-icon="map-pin"></span>Kantin Gedung A</div>
+            <div class="item__meta"><span data-icon="clock"></span>10 Okt 2026</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="item" href="detail.html" data-tags="kunci hilang motor">
+        <span class="item__thumb"><span data-icon="key"></span></span>
+        <div class="item__body">
+          <div class="item__top">
+            <span class="badge badge--lost"><span class="badge__dot"></span>Hilang</span>
+          </div>
+          <div class="item__title">Kunci Motor Honda</div>
+          <div class="item__meta"><span data-icon="tag"></span>Kunci</div>
+          <div class="item__foot">
+            <div class="item__meta"><span data-icon="map-pin"></span>Parkiran Motor Blok B</div>
+            <div class="item__meta"><span data-icon="clock"></span>09 Okt 2026</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="item" href="detail.html" data-tags="dompet tas temuan ransel">
+        <span class="item__thumb"><span data-icon="package"></span></span>
+        <div class="item__body">
+          <div class="item__top">
+            <span class="badge badge--found"><span class="badge__dot"></span>Temuan</span>
+          </div>
+          <div class="item__title">Tas Ransel Hitam</div>
+          <div class="item__meta"><span data-icon="tag"></span>Dompet &amp; Tas</div>
+          <div class="item__foot">
+            <div class="item__meta"><span data-icon="map-pin"></span>Lobby Gedung Utama</div>
+            <div class="item__meta"><span data-icon="clock"></span>08 Okt 2026</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="item" href="detail.html" data-tags="dokumen hilang ktm">
+        <span class="item__thumb"><span data-icon="file-text"></span></span>
+        <div class="item__body">
+          <div class="item__top">
+            <span class="badge badge--lost"><span class="badge__dot"></span>Hilang</span>
+          </div>
+          <div class="item__title">KTM &amp; KTP di Map Biru</div>
+          <div class="item__meta"><span data-icon="tag"></span>Dokumen</div>
+          <div class="item__foot">
+            <div class="item__meta"><span data-icon="map-pin"></span>Gedung B Lantai 3</div>
+            <div class="item__meta"><span data-icon="clock"></span>07 Okt 2026</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="item" href="detail.html" data-tags="elektronik temuan android ponsel">
+        <span class="item__thumb"><span data-icon="laptop"></span></span>
+        <div class="item__body">
+          <div class="item__top">
+            <span class="badge badge--found"><span class="badge__dot"></span>Temuan</span>
+          </div>
+          <div class="item__title">Ponsel Android Samsung</div>
+          <div class="item__meta"><span data-icon="tag"></span>Elektronik</div>
+          <div class="item__foot">
+            <div class="item__meta"><span data-icon="map-pin"></span>Ruang Baca Lantai 2</div>
+            <div class="item__meta"><span data-icon="clock"></span>06 Okt 2026</div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="card card--pad center" data-filter-empty hidden style="padding:36px 18px">
+      <div style="display:flex;justify-content:center;color:var(--muted-2);margin-bottom:10px" data-icon="search"></div>
+      <div class="strong">Tidak ada barang yang cocok</div>
+      <p class="small muted" style="margin-top:4px">Coba kata kunci lain atau ubah filter kategori.</p>
+    </div>
+
+      <div class="center" style="padding:8px 0 4px">
+        <button class="btn btn--ghost btn--sm" type="button" data-toast="Memuat 6 barang lainnya…">Muat lebih banyak</button>
+      </div>
+
+    </div> <!-- /.search-main -->
+  </div> <!-- /.search-layout -->
+  </div> <!-- /.container -->
+</main>
+
+<div id="site-footer"></div>
+<div id="site-bottomnav"></div>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

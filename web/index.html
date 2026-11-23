@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LoFo — Temukan Barang Hilangmu Kembali</title>
+<meta name="description" content="LoFo adalah platform Lost & Found Indonesia. Laporkan barang hilang & temuan, klaim kepemilikan dengan aman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="beranda">
+
+<div id="site-header"></div>
+
+<main class="page">
+  <div class="container stack">
+
+    <!-- HERO (2 Kolom di Desktop) -->
+    <section class="hero">
+      <div class="hero__layout">
+        <div class="hero__main">
+          <span class="hero__eyebrow"><span data-icon="shield" style="display:inline-flex"></span> Platform Lost &amp; Found Kampus #1</span>
+          <h1>Barangmu hilang?<br>Temukan kembali di sini.</h1>
+          <p>Laporkan barang hilang &amp; temuan, klaim kepemilikan dengan verifikasi aman. Ribuan barang sudah kembali ke pemilik aslinya.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="lapor-hilang.html"><span data-icon="plus"></span>Lapor Sekarang</a>
+            <a class="btn btn--ghost" href="cari.html"><span data-icon="search"></span>Cari Barang</a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="hero-card-preview">
+            <div class="row-between" style="margin-bottom:12px">
+              <span class="badge badge--found"><span class="badge__dot"></span>Temuan Baru</span>
+              <span class="tiny muted">10 menit lalu</span>
+            </div>
+            <div class="row" style="gap:14px;align-items:flex-start">
+              <div class="item__thumb" style="width:72px;height:72px;border-radius:12px;background:var(--primary-soft);color:var(--primary-dark)">
+                <span data-icon="laptop"></span>
+              </div>
+              <div class="grow">
+                <div class="strong" style="font-size:15.5px">iPhone 13 Pro (Sierra Blue)</div>
+                <div class="small muted" style="margin-top:2px"><span data-icon="map-pin" style="width:13px;height:13px;vertical-align:-2px"></span> Kantin Gedung A</div>
+                <div class="row" style="gap:6px;margin-top:8px">
+                  <span class="badge badge--soft" style="font-size:10.5px">Elektronik</span>
+                  <span class="badge" style="background:#DCFCE7;color:#15803D;font-size:10.5px"><span data-icon="check-circle" style="width:11px;height:11px"></span> AI Cocok 94%</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+              <span class="tiny muted">Pelapor terverifikasi</span>
+              <a href="detail.html" class="small strong" style="color:var(--primary-dark)">Lihat Detail &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATISTIK (4 Kolom) -->
+    <section class="stats" aria-label="Statistik LoFo" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stats__item">
+        <div class="stats__num mono">1.284</div>
+        <div class="stats__label">Total Laporan</div>
+      </div>
+      <div class="stats__item">
+        <div class="stats__num mono">863</div>
+        <div class="stats__label">Berhasil Ditemukan</div>
+      </div>
+      <div class="stats__item">
+        <div class="stats__num mono">92%</div>
+        <div class="stats__label">Klaim Terverifikasi</div>
+      </div>
+      <div class="stats__item">
+        <div class="stats__num mono">&lt; 24 Jam</div>
+        <div class="stats__label">Rata-rata Waktu Temu</div>
+      </div>
+    </section>
+
+    <!-- BAGAIMANA LOFO BEKERJA (3 Kolom Desktop) -->
+    <section>
+      <div class="section-head">
+        <h2>Bagaimana LoFo Bekerja</h2>
+        <span class="small muted">Mudah, cepat, dan aman</span>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-card__num">1</div>
+          <h3>Laporkan Barang</h3>
+          <p>Tuliskan deskripsi lengkap, ciri khusus, lokasi terakhir, serta lampirkan foto barang hilang atau temuanmu.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__num">2</div>
+          <h3>AI Pencocokan Otomatis</h3>
+          <p>Sistem LoFo otomatis mencocokkan laporan kehilangan dengan barang temuan berdasarkan kemiripan deskripsi dan lokasi.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__num">3</div>
+          <h3>Verifikasi &amp; Ambil</h3>
+          <p>Ajukan klaim kepemilikan dengan bukti (nomor seri, nota, atau ciri rahasia) dan ambil barang secara aman.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KATEGORI -->
+    <section>
+      <div class="section-head">
+        <h2>Kategori Populer</h2>
+        <a href="cari.html">Lihat semua</a>
+      </div>
+      <div class="cat-grid">
+        <a class="cat" href="cari.html">
+          <span class="cat__ico"><span data-icon="laptop"></span></span>
+          Elektronik
+        </a>
+        <a class="cat" href="cari.html">
+          <span class="cat__ico"><span data-icon="wallet"></span></span>
+          Dompet
+        </a>
+        <a class="cat" href="cari.html">
+          <span class="cat__ico"><span data-icon="key"></span></span>
+          Kunci
+        </a>
+        <a class="cat" href="cari.html">
+          <span class="cat__ico"><span data-icon="file-text"></span></span>
+          Dokumen
+        </a>
+        <a class="cat" href="cari.html">
+          <span class="cat__ico"><span data-icon="package"></span></span>
+          Tas
+        </a>
+        <a class="cat" href="cari.html">
+          <span class="cat__ico"><span data-icon="star"></span></span>
+          Lainnya
+        </a>
+      </div>
+    </section>
+
+    <!-- LAPORAN TERBARU -->
+    <section>
+      <div class="section-head">
+        <h2>Laporan Terbaru</h2>
+        <a href="cari.html">Lihat semua</a>
+      </div>
+      <div class="item-list">
+        <a class="item" href="detail.html">
+          <span class="item__thumb"><span data-icon="wallet"></span></span>
+          <div class="item__body">
+            <div class="item__top">
+              <span class="badge badge--lost"><span class="badge__dot"></span>Hilang</span>
+            </div>
+            <div class="item__title">Dompet Kulit Coklat</div>
+            <div class="item__meta">
+              <span data-icon="tag"></span>Dompet &amp; Tas
+            </div>
+            <div class="item__foot">
+              <div class="item__meta"><span data-icon="map-pin"></span>Perpustakaan Kampus</div>
+              <div class="item__meta"><span data-icon="clock"></span>12 Okt</div>
+            </div>
+          </div>
+        </a>
+
+        <a class="item" href="detail.html">
+          <span class="item__thumb"><span data-icon="laptop"></span></span>
+          <div class="item__body">
+            <div class="item__top">
+              <span class="badge badge--found"><span class="badge__dot"></span>Temuan</span>
+            </div>
+            <div class="item__title">iPhone 13 Pro</div>
+            <div class="item__meta">
+              <span data-icon="tag"></span>Elektronik
+            </div>
+            <div class="item__foot">
+              <div class="item__meta"><span data-icon="map-pin"></span>Kantin Gedung A</div>
+              <div class="item__meta"><span data-icon="clock"></span>10 Okt</div>
+            </div>
+          </div>
+        </a>
+
+        <a class="item" href="detail.html">
+          <span class="item__thumb"><span data-icon="key"></span></span>
+          <div class="item__body">
+            <div class="item__top">
+              <span class="badge badge--lost"><span class="badge__dot"></span>Hilang</span>
+            </div>
+            <div class="item__title">Kunci Motor Honda</div>
+            <div class="item__meta">
+              <span data-icon="tag"></span>Kunci
+            </div>
+            <div class="item__foot">
+              <div class="item__meta"><span data-icon="map-pin"></span>Parkiran Motor Blok B</div>
+              <div class="item__meta"><span data-icon="clock"></span>09 Okt</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+      <div class="grow">
+        <h3>Sudah menemukan barang?</h3>
+        <p>Laporkan sekarang &amp; bantu orang lain.</p>
+      </div>
+      <a class="btn btn--primary btn--sm" href="lapor-temuan.html">Lapor Temuan</a>
+    </section>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<div id="site-bottomnav"></div>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

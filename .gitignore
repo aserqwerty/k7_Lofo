@@ -1,0 +1,23 @@
+# Local settings and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and local data
+node_modules/
+vendor/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+/uploads/
+/web/uploads/
+
+# Generated files and OS metadata
+*.log
+__pycache__/
+_preview/
+.DS_Store
+Thumbs.db

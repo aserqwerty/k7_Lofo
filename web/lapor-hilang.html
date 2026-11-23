@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lapor Barang Hilang — LoFo</title>
+<meta name="description" content="Laporkan barangmu yang hilang agar bisa ditemukan kembali.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="lapor-hilang">
+
+<div id="site-header"></div>
+
+<main class="page">
+  <div class="container stack">
+
+    <a class="back-link" href="index.html"><span data-icon="arrow-left"></span>Beranda</a>
+
+    <div class="page-head">
+      <h1>Lapor Barang Hilang</h1>
+      <p>Isi detail barangmu supaya orang lain bisa mengenalinya dan segera melapor saat menemukan.</p>
+    </div>
+
+    <div class="form-layout">
+
+      <!-- Kolom Form Utama -->
+      <div class="form-main stack">
+
+        <div class="steps" style="margin-bottom:6px">
+          <span>Langkah 1 dari 2 · Informasi Utama</span>
+          <span class="steps__bar"><span class="steps__fill" style="width:50%"></span></span>
+        </div>
+
+        <form class="stack" novalidate data-validate data-success="Laporan barang hilang berhasil dikirim. Menunggu verifikasi admin.">
+
+          <section class="card card--pad stack-sm">
+            <h2 style="font-size:15.5px;margin-bottom:2px">Informasi Barang</h2>
+
+            <div class="form-row-2">
+              <div class="field">
+                <label for="nama">Nama Barang <span class="req">*</span></label>
+                <input class="input" type="text" id="nama" name="nama" placeholder="Contoh: Dompet Kulit Coklat" required>
+                <span class="field__error">Nama barang wajib diisi.</span>
+              </div>
+
+              <div class="field">
+                <label for="kategori">Kategori <span class="req">*</span></label>
+                <select class="select" id="kategori" name="kategori" required>
+                  <option value="">Pilih kategori</option>
+                  <option>Elektronik</option>
+                  <option>Dompet &amp; Tas</option>
+                  <option>Kunci</option>
+                  <option>Dokumen</option>
+                  <option>Pakaian</option>
+                  <option>Lainnya</option>
+                </select>
+                <span class="field__error">Pilih salah satu kategori.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="deskripsi">Deskripsi Lengkap <span class="req">*</span></label>
+              <textarea class="textarea" id="deskripsi" name="deskripsi" placeholder="Jelaskan ciri-ciri barang: warna, merek, kondisi, dan tanda khusus lainnya..." required style="min-height:96px"></textarea>
+              <span class="field__hint">Semakin detail, semakin mudah dicocokkan oleh sistem AI kami.</span>
+              <span class="field__error">Deskripsi wajib diisi.</span>
+            </div>
+
+            <div class="form-row-2">
+              <div class="field">
+                <label for="lokasi">Lokasi Terakhir Dilihat <span class="req">*</span></label>
+                <input class="input" type="text" id="lokasi" name="lokasi" placeholder="Contoh: Perpustakaan Kampus" required>
+                <span class="field__error">Lokasi wajib diisi.</span>
+              </div>
+
+              <div class="field">
+                <label for="tanggal">Tanggal Hilang <span class="req">*</span></label>
+                <input class="input" type="date" id="tanggal" name="tanggal" value="2026-10-12" required>
+                <span class="field__error">Tanggal wajib diisi.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Foto Barang <span class="muted" style="font-weight:500">(opsional, maks 5 MB)</span></label>
+              <label class="upload" for="foto">
+                <span data-icon="upload"></span>
+                <strong>Klik atau seret foto ke sini</strong>
+                <span class="tiny">JPG, PNG — maksimal 5 MB</span>
+              </label>
+              <input type="file" id="foto" name="foto" accept="image/*" class="sr-only">
+            </div>
+
+          </section>
+
+          <div class="action-bar">
+            <a class="btn btn--ghost" href="index.html">Batal</a>
+            <button class="btn btn--primary" type="submit">Kirim Laporan<span data-icon="chevron-right"></span></button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- Kolom Sidebar Panduan (Desktop) -->
+      <aside class="form-sidebar stack-sm" aria-label="Panduan Melapor">
+        <div class="card card--pad stack-sm">
+          <div class="strong" style="font-size:14px;display:flex;align-items:center;gap:8px">
+            <span data-icon="info" style="color:var(--primary-dark)"></span>Panduan Melapor Efektif
+          </div>
+          <ul class="stack-sm" style="margin:0;padding-left:18px;font-size:13px;color:var(--ink-2);line-height:1.55">
+            <li>Sebutkan <strong>merek &amp; warna</strong> secara spesifik.</li>
+            <li>Sertakan <strong>ciri khusus rahasia</strong> (stiker, goresan, gantungan kunci).</li>
+            <li>Tuliskan estimasi <strong>jam kejadian</strong> jika mengingatnya.</li>
+            <li>Gunakan nomor kontak yang aktif dan mudah dihubungi.</li>
+          </ul>
+        </div>
+
+        <div class="card card--pad stack-sm" style="background:var(--surface-2)">
+          <div class="strong" style="font-size:13.5px;display:flex;align-items:center;gap:8px">
+            <span data-icon="shield" style="color:var(--found)"></span>Privasi &amp; Keamanan
+          </div>
+          <p class="small muted" style="margin:0;line-height:1.5">
+            Data kontak pribadimu hanya dapat diakses oleh admin dan tidak akan dipublikasikan secara terbuka demi keamananmu.
+          </p>
+        </div>
+
+        <div class="card card--pad stack-sm">
+          <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em">Butuh Bantuan Mendesak?</div>
+          <p class="small" style="margin:0;color:var(--ink-2)">Hubungi Pos Keamanan Kampus Pusat: <strong class="mono">0812-3456-7890</strong></p>
+        </div>
+      </aside>
+
+    </div>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<div id="site-bottomnav"></div>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

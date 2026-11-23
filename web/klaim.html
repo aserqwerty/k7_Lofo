@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ajukan Klaim — LoFo</title>
+<meta name="description" content="Ajukan klaim kepemilikan barang temuan di LoFo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="klaim">
+
+<div id="site-header"></div>
+
+<main class="page">
+  <div class="container stack">
+
+    <a class="back-link" href="detail.html"><span data-icon="arrow-left"></span>Detail barang</a>
+
+    <div class="page-head">
+      <h1>Ajukan Klaim Kepemilikan</h1>
+      <p>Sertakan bukti kepemilikan yang valid agar klaimmu dapat diverifikasi oleh admin dalam 1×24 jam.</p>
+    </div>
+
+    <div class="form-layout">
+
+      <!-- Kolom Form Utama -->
+      <div class="form-main stack">
+
+        <!-- Ringkasan barang yang diklaim -->
+        <section class="card card--pad">
+          <div class="row" style="gap:14px">
+            <span class="item__thumb" style="width:72px;height:72px"><span data-icon="laptop"></span></span>
+            <div class="grow">
+              <div class="row" style="gap:8px;flex-wrap:wrap">
+                <span class="badge badge--soft">Elektronik</span>
+                <span class="badge badge--found">Tersedia untuk Diklaim</span>
+              </div>
+              <div class="strong" style="font-size:16px;margin-top:6px">iPhone 13 Pro (Sierra Blue)</div>
+              <div class="item__meta" style="margin-top:2px"><span data-icon="map-pin"></span>Kantin Gedung A · Ditemukan 10 Okt 2026</div>
+            </div>
+          </div>
+        </section>
+
+        <form class="stack" novalidate data-validate data-success="Pengajuan klaim terkirim. Admin akan meninjau bukti dalam 1×24 jam.">
+
+          <section class="card card--pad stack-sm">
+            <h2 style="font-size:15.5px">Bukti Kepemilikan</h2>
+            <p class="small muted" style="margin-top:-4px">Berikan informasi spesifik yang hanya diketahui oleh pemilik asli barang.</p>
+
+            <div class="field">
+              <label for="bukti">Deskripsi Bukti Rahasia <span class="req">*</span></label>
+              <textarea class="textarea" id="bukti" name="bukti"
+                placeholder="Contoh: IMEI perangkat 35xxxxxxxxxxxx, nomor seri, ada stiker apel kecil di sudut kiri bawah casing, atau wallpaper foto kucing." required style="min-height:100px"></textarea>
+              <span class="field__hint">Cantumkan nomor IMEI, nomor seri, isi dompet, atau ciri unik yang tidak tampak pada foto publik.</span>
+              <span class="field__error">Deskripsi bukti wajib diisi.</span>
+            </div>
+
+            <div class="field">
+              <label>Unggah Bukti <span class="muted" style="font-weight:500">(nota pembelian, foto lama barang, kartu garansi, maks 5 MB)</span></label>
+              <label class="upload" for="file">
+                <span data-icon="upload"></span>
+                <strong>Unggah dokumen bukti kepemilikan</strong>
+                <span class="tiny">JPG, PNG, atau PDF — maksimal 5 MB</span>
+              </label>
+              <input type="file" id="file" class="sr-only" accept="image/*,.pdf">
+            </div>
+
+            <!-- File terunggah -->
+            <div class="row" style="gap:10px;padding:12px;border:1px solid var(--border);border-radius:var(--r-md);background:var(--surface-2)">
+              <span class="meta-row__ico" style="background:var(--found-soft);color:var(--found)"><span data-icon="check-circle"></span></span>
+              <div class="grow">
+                <div class="strong" style="font-size:13.5px">nota-pembelian-ibox.jpg</div>
+                <div class="tiny muted">1.2 MB · Siap diverifikasi admin</div>
+              </div>
+              <button class="icon-btn" type="button" data-toast="File bukti dihapus." aria-label="Hapus file"><span data-icon="x"></span></button>
+            </div>
+
+            <div class="row" style="gap:12px;align-items:flex-start;padding:14px;border-radius:var(--r-md);background:var(--primary-tint);border:1px solid #FED7AA">
+              <span style="color:var(--primary-dark);display:flex;flex:none;margin-top:2px" data-icon="lock"></span>
+              <div>
+                <div class="strong" style="font-size:13.5px">Kerahasiaan Bukti Dijamin</div>
+                <div class="tiny" style="color:var(--ink-2);margin-top:2px;line-height:1.5">Bukti yang kamu unggah bersifat privat dan terenkripsi. Hanya admin verifikator resmi yang dapat melihat dokumen ini.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="checkline" style="font-size:13px;align-items:flex-start">
+                <input type="checkbox" name="agree" required style="margin-top:3px">
+                <span>Saya menyatakan dengan sebenarnya bahwa barang ini adalah milik saya dan siap mempertanggungjawabkan sesuai peraturan kampus. <span class="req">*</span></span>
+              </label>
+              <span class="field__error">Kamu harus menyetujui pernyataan kepemilikan.</span>
+            </div>
+
+          </section>
+
+          <div class="action-bar">
+            <a class="btn btn--ghost" href="detail.html">Batal</a>
+            <button class="btn btn--primary" type="submit"><span data-icon="check"></span>Kirim Pengajuan Klaim</button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- Kolom Sidebar Tips Klaim (Desktop) -->
+      <aside class="form-sidebar stack-sm" aria-label="Tips Klaim">
+        <div class="card card--pad stack-sm">
+          <div class="strong" style="font-size:14px;display:flex;align-items:center;gap:8px">
+            <span data-icon="shield" style="color:var(--primary-dark)"></span>Tips Klaim Cepat Disetujui
+          </div>
+          <ul class="stack-sm" style="margin:0;padding-left:18px;font-size:13px;color:var(--ink-2);line-height:1.55">
+            <li>Sertakan <strong>nomor seri/IMEI</strong> jika barang elektronik.</li>
+            <li>Lampirkan <strong>foto kardus box</strong> atau nota pembelian lama.</li>
+            <li>Sebutkan <strong>konten di dalam dompet/tas</strong> (nama kartu, jumlah uang nominal).</li>
+          </ul>
+        </div>
+
+        <div class="card card--pad stack-sm">
+          <div class="strong" style="font-size:13.5px;display:flex;align-items:center;gap:8px">
+            <span data-icon="clock" style="color:var(--primary-dark)"></span>Tahapan Verifikasi
+          </div>
+          <ol class="stack-sm" style="margin:0;padding-left:18px;font-size:12.5px;color:var(--ink-2);line-height:1.55">
+            <li>Admin meninjau bukti dalam 1×24 jam.</li>
+            <li>Notifikasi persetujuan dikirim via akun &amp; email.</li>
+            <li>Pengambilan di Pos Keamanan dengan KTM/KTP asli.</li>
+          </ol>
+        </div>
+
+        <div class="card card--pad stack-sm" style="background:var(--surface-2)">
+          <div class="tiny muted strong" style="text-transform:uppercase;letter-spacing:.04em">Admin Penanggung Jawab</div>
+          <p class="small" style="margin:0;color:var(--ink-2)">Posko Gedung A Lantai 1 · Jam operasional 08.00 - 17.00 WIB</p>
+        </div>
+      </aside>
+
+    </div>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<div id="site-bottomnav"></div>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
