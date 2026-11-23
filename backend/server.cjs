@@ -3,6 +3,7 @@ const { createServer } = require('node:http');
 const { extname, join } = require('node:path');
 const mysql = require('mysql2/promise');
 const { searchReports } = require('./reports.cjs');
+const { categories, readSubmission, saveSubmission, SubmissionError } = require('./submission.cjs');
 
 const webRoot = join(__dirname, '..', 'web');
 const pages = new Set([
@@ -10,7 +11,7 @@ const pages = new Set([
   'lapor-hilang.html', 'lapor-temuan.html', 'klaim.html', 'notifikasi.html', 'dashboard.html',
   'lapor.html', 'laporan-saya.html', 'tentang.html',
 ]);
-const assets = new Set(['assets/css/style.css', 'assets/js/app.js', 'assets/js/cari.js', 'assets/js/beranda.js']);
+const assets = new Set(['assets/css/style.css', 'assets/js/app.js', 'assets/js/cari.js', 'assets/js/beranda.js', 'assets/js/lapor.js']);
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -22,19 +23,48 @@ function sendJson(response, status, data) {
   response.end(JSON.stringify(data));
 }
 
-function createLoFoServer({ db } = {}) {
-  return createServer(async (request, response) => {
+function createLoFoServer({ db, uploadsDir = join(__dirname, '..', 'uploads') } = {}) {
+  let activeSubmissions = 0;
+  return createServer({ requestTimeout: 60000 }, async (request, response) => {
     response.setHeader('X-Content-Type-Options', 'nosniff');
-    if (request.method !== 'GET') {
-      response.setHeader('Allow', 'GET');
-      return sendJson(response, 405, { error: 'Metode tidak didukung.' });
-    }
 
     let url;
     try {
       url = new URL(request.url, 'http://localhost');
     } catch {
       return sendJson(response, 400, { error: 'Alamat permintaan tidak valid.' });
+    }
+
+    if (url.pathname === '/api/reports' && request.method === 'POST') {
+      response.setHeader('Cache-Control', 'no-store');
+      const reject = (status, error) => {
+        if (!request.readableEnded) response.setHeader('Connection', 'close');
+        return sendJson(response, status, { error });
+      };
+      const { origin, host, 'sec-fetch-site': site } = request.headers;
+      const protocol = request.socket.encrypted ? 'https' : 'http';
+      if (site === 'cross-site' || (origin && origin !== `${protocol}://${host}`)) {
+        return reject(403, 'Kirim laporan dari halaman LoFo.');
+      }
+      if (activeSubmissions >= 4) {
+        response.setHeader('Retry-After', '5');
+        return reject(503, 'Server sedang sibuk. Tunggu beberapa detik lalu coba lagi.');
+      }
+      activeSubmissions++;
+      try {
+        const report = await saveSubmission(db, uploadsDir, await readSubmission(request));
+        return sendJson(response, 201, { report });
+      } catch (error) {
+        if (error instanceof SubmissionError) return reject(error.status, error.message);
+        console.error('LoFo submission:', error.code ?? error.message);
+        return reject(500, 'Penyimpanan laporan belum dapat dikonfirmasi.');
+      } finally {
+        activeSubmissions--;
+      }
+    }
+    if (request.method !== 'GET') {
+      response.setHeader('Allow', url.pathname === '/api/reports' ? 'GET, POST' : 'GET');
+      return sendJson(response, 405, { error: 'Metode tidak didukung.' });
     }
 
     try {
@@ -47,7 +77,7 @@ function createLoFoServer({ db } = {}) {
         const sort = searchParams.get('sort') ?? 'newest';
         if (q.length > 100 || location.length > 100 ||
             !['', 'hilang', 'temuan'].includes(type) ||
-            !['', 'elektronik', 'dompet', 'kunci', 'dokumen'].includes(category) ||
+            (category && !categories.includes(category)) ||
             !['newest', 'oldest'].includes(sort)) {
           return sendJson(response, 400, { error: 'Filter pencarian tidak valid.' });
         }
@@ -74,6 +104,7 @@ function createLoFoServer({ db } = {}) {
 
 if (require.main === module) {
   const port = Number(process.env.PORT ?? 3000);
+  const host = process.env.HOST || '127.0.0.1';
   const db = mysql.createPool({
     host: process.env.DB_HOST ?? '127.0.0.1',
     port: Number(process.env.DB_PORT ?? 3306),
@@ -85,8 +116,9 @@ if (require.main === module) {
   });
   const server = createLoFoServer({ db });
   server.once('close', () => db.end().catch((error) => console.error('LoFo:', error.code ?? error.message)));
-  server.listen(port, '127.0.0.1', () => {
-    console.log(`LoFo berjalan di http://127.0.0.1:${server.address().port}`);
+  server.listen(port, host, () => {
+    const { address, port } = server.address();
+    console.log(`LoFo berjalan di http://${address.includes(':') ? `[${address}]` : address}:${port}`);
   });
 }
 

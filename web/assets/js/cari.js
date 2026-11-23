@@ -19,6 +19,7 @@
     ['dompet', 'Dompet & Tas'],
     ['kunci', 'Kunci'],
     ['dokumen', 'Dokumen'],
+    ['pakaian', 'Pakaian'],
   ]);
   const formatDate = new Intl.DateTimeFormat('id-ID', {
     day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC',

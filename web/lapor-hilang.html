@@ -14,14 +14,14 @@
 
 <div id="site-header"></div>
 
-<main class="page">
+<main class="page report-page">
   <div class="container stack">
 
     <a class="back-link" href="lapor.html"><span data-icon="arrow-left"></span>Pilih jenis laporan</a>
 
     <div class="page-head">
       <h1>Lapor Barang Hilang</h1>
-      <p>Pratinjau formulir. Pengiriman laporan belum tersedia.</p>
+      <p>Ceritakan ciri barang dan lokasi terakhir kamu melihatnya. Admin akan memverifikasi laporan sebelum tampil di Cari Barang.</p>
     </div>
 
     <div class="form-layout">
@@ -29,12 +29,8 @@
       <!-- Kolom Form Utama -->
       <div class="form-main stack">
 
-        <div class="steps" style="margin-bottom:6px">
-          <span>Langkah 1 dari 2 · Informasi Utama</span>
-          <span class="steps__bar"><span class="steps__fill" style="width:50%"></span></span>
-        </div>
-
-        <form class="stack" method="post" novalidate data-validate>
+        <form class="stack report-form" action="/api/reports" method="post" enctype="multipart/form-data" data-max-photos="1">
+          <input type="hidden" name="type" value="hilang">
 
           <section class="card card--pad stack-sm">
             <h2 style="font-size:15.5px;margin-bottom:2px">Informasi Barang</h2>
@@ -42,64 +38,71 @@
             <div class="form-row-2">
               <div class="field">
                 <label for="nama">Nama Barang <span class="req">*</span></label>
-                <input class="input" type="text" id="nama" name="nama" placeholder="Contoh: Dompet Kulit Coklat" required>
-                <span class="field__error">Nama barang wajib diisi.</span>
+                <input class="input" type="text" id="nama" name="title" placeholder="Contoh: Dompet Kulit Coklat" maxlength="160" required>
               </div>
 
               <div class="field">
                 <label for="kategori">Kategori <span class="req">*</span></label>
-                <select class="select" id="kategori" name="kategori" required>
+                <select class="select" id="kategori" name="category" required>
                   <option value="">Pilih kategori</option>
-                  <option>Elektronik</option>
-                  <option>Dompet &amp; Tas</option>
-                  <option>Kunci</option>
-                  <option>Dokumen</option>
-                  <option>Pakaian</option>
-                  <option>Lainnya</option>
+                  <option value="elektronik">Elektronik</option>
+                  <option value="dompet">Dompet &amp; Tas</option>
+                  <option value="kunci">Kunci</option>
+                  <option value="dokumen">Dokumen</option>
+                  <option value="pakaian">Pakaian</option>
+                  <option value="lainnya">Lainnya</option>
                 </select>
-                <span class="field__error">Pilih salah satu kategori.</span>
               </div>
             </div>
 
             <div class="field">
               <label for="deskripsi">Deskripsi Lengkap <span class="req">*</span></label>
-              <textarea class="textarea" id="deskripsi" name="deskripsi" placeholder="Jelaskan ciri-ciri barang: warna, merek, kondisi, dan tanda khusus lainnya..." required style="min-height:96px"></textarea>
+              <textarea class="textarea" id="deskripsi" name="description" placeholder="Contoh: Dompet coklat, dua lipatan, bagian sudut agak pudar." maxlength="2000" required></textarea>
               <span class="field__hint">Sebutkan ciri umum yang membantu orang lain mengenali barangmu.</span>
-              <span class="field__error">Deskripsi wajib diisi.</span>
             </div>
 
             <div class="form-row-2">
               <div class="field">
                 <label for="lokasi">Lokasi Terakhir Dilihat <span class="req">*</span></label>
-                <input class="input" type="text" id="lokasi" name="lokasi" placeholder="Contoh: Perpustakaan Kampus" required>
-                <span class="field__error">Lokasi wajib diisi.</span>
+                <input class="input" type="text" id="lokasi" name="location" placeholder="Contoh: Perpustakaan Kampus" maxlength="100" required>
               </div>
 
               <div class="field">
                 <label for="tanggal">Tanggal Hilang <span class="req">*</span></label>
-                <input class="input" type="date" id="tanggal" name="tanggal" required>
-                <span class="field__error">Tanggal wajib diisi.</span>
+                <input class="input" type="date" id="tanggal" name="occurredAt" min="1000-01-01" max="9999-12-31" required>
               </div>
             </div>
 
-            <div class="field">
-              <label>Foto Barang <span class="muted" style="font-weight:500">(opsional, maks 5 MB)</span></label>
-              <label class="upload" for="foto">
-                <span data-icon="upload"></span>
-                <strong>Klik atau seret foto ke sini</strong>
-                <span class="tiny">JPG, PNG — maksimal 5 MB</span>
-              </label>
-              <input type="file" id="foto" name="foto" accept="image/*" class="sr-only">
-            </div>
+            <fieldset class="report-photos stack-sm" aria-describedby="foto-bantuan">
+              <legend>Foto barang <span class="muted">(opsional)</span></legend>
+              <p class="field__hint" id="foto-bantuan">Maksimal 1 foto. JPG, PNG, atau WebP, hingga 5 MB.</p>
+              <ul class="photo-list" id="foto-daftar" aria-label="Foto terpilih" hidden></ul>
+              <div class="photo-actions">
+                <button class="btn btn--ghost" type="button" id="pilih-foto" disabled><span data-icon="upload"></span><span id="foto-label">Pilih foto</span></button>
+                <button class="btn btn--ghost" type="button" id="ambil-foto" disabled><span data-icon="camera"></span>Ambil foto</button>
+              </div>
+              <input type="file" id="foto" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" hidden>
+              <input type="file" id="kamera" accept="image/*" capture="environment" hidden>
+              <p class="small muted" id="foto-jumlah" role="status">0 / 1 foto dipilih</p>
+              <p class="report-error" id="foto-error" role="alert" hidden></p>
+            </fieldset>
 
           </section>
 
-          <div class="action-bar">
+          <noscript><p class="small">Aktifkan JavaScript dan buka LoFo melalui server agar bisa mengirim laporan.</p></noscript>
+          <p class="report-error" id="lapor-error" role="alert" hidden></p>
+          <div class="action-bar report-actions">
             <a class="btn btn--ghost" href="lapor.html">Batal</a>
-            <button class="btn btn--primary" type="submit" disabled>Kirim Laporan<span data-icon="chevron-right"></span></button>
+            <button class="btn btn--primary" type="submit" disabled><span id="kirim-label">Kirim Laporan</span><span data-icon="chevron-right"></span></button>
           </div>
 
         </form>
+        <section class="card card--pad stack-sm report-success" id="lapor-sukses" hidden>
+          <h2 tabindex="-1" id="lapor-sukses-judul">Laporan tersimpan</h2>
+          <p id="lapor-sukses-detail"></p>
+          <p><strong>Menunggu Verifikasi.</strong> Laporan belum tampil di Cari Barang.</p>
+          <a class="btn btn--primary" href="index.html">Kembali ke Beranda</a>
+        </section>
 
       </div>
 
@@ -113,7 +116,6 @@
             <li>Sebutkan <strong>merek &amp; warna</strong> secara spesifik.</li>
             <li>Simpan <strong>ciri rahasia</strong> untuk bukti kepemilikan.</li>
             <li>Tuliskan estimasi <strong>jam kejadian</strong> jika mengingatnya.</li>
-            <li>Gunakan nomor kontak yang aktif dan mudah dihubungi.</li>
           </ul>
         </div>
 
@@ -122,7 +124,7 @@
             <span data-icon="shield" style="color:var(--found)"></span>Privasi &amp; Keamanan
           </div>
           <p class="small muted" style="margin:0;line-height:1.5">
-            Data kontak pribadimu hanya dapat diakses oleh admin dan tidak akan dipublikasikan secara terbuka demi keamananmu.
+            Jangan sertakan nomor identitas, nomor telepon, atau data pribadi dalam deskripsi dan foto.
           </p>
         </div>
 
@@ -140,5 +142,6 @@
 <div id="site-footer"></div>
 <div id="site-bottomnav"></div>
 <script src="assets/js/app.js"></script>
+<script src="assets/js/lapor.js"></script>
 </body>
 </html>
